@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('aa_categories', function (Blueprint $table) 
-        {
+        Schema::create('aa_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); //nama kategori
+            $table->string('category_name', 128)->unique()->comment('Nama kategori tradisi');
+            $table->text('description')->nullable()->comment('Deskripsi kategori');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
